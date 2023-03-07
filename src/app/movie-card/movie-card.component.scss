@@ -1,0 +1,16 @@
+.movie-image {
+  height: 200px;
+  width: 200px;
+}
+.movie-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  justify-content: center;
+}
+.mat-card {
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+  align-items: center;
+}
