@@ -1,6 +1,6 @@
 .movie-image {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
 }
 .movie-card {
   display: flex;
@@ -13,4 +13,9 @@
   height: 400px;
   margin: 10px;
   align-items: center;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
 }

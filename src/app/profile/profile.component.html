@@ -2,10 +2,12 @@
 <div class="profile-page">
   <mat-card class="profile-card">
     <mat-card-header class="profile-header">
-      <mat-card-title>{{ loggedUser.Username }}'s Profile</mat-card-title>
+      <mat-card-title class="profile-title"
+        >{{ loggedUser.Username }}'s Profile</mat-card-title
+      >
     </mat-card-header>
     <mat-card-content class="profile-content">
-      <form>
+      <form class="form">
         <mat-form-field>
           <mat-label>Username</mat-label>
           <input
@@ -50,15 +52,33 @@
         </mat-form-field>
       </form>
     </mat-card-content>
-    <!-- Make this section display the title instead of ID -->
-    <div>favorite movies: {{ user.FavoriteMovies }}</div>
-    <mat-card-actions>
-      <button mat-raised-button (click)="updateUser()" color="basic">
+
+    <mat-card-actions style="display: flex; justify-content: center">
+      <button
+        mat-raised-button
+        (click)="updateUser()"
+        color="basic"
+        class="button"
+      >
         <mat-icon>edit</mat-icon> Update profile
       </button>
-      <button mat-raised-button (click)="deleteAccount()" color="warn">
+      <button
+        mat-raised-button
+        (click)="deleteAccount()"
+        color="warn"
+        class="button"
+      >
         <mat-icon>delete_forever</mat-icon> Delete account
       </button>
     </mat-card-actions>
   </mat-card>
+  <!-- Make this section display the title instead of ID -->
+  <div>
+    <h3 class="favorite-header">Favorite movies:</h3>
+    <ul>
+      <li>
+        {{ user.FavoriteMovies }}
+      </li>
+    </ul>
+  </div>
 </div>
