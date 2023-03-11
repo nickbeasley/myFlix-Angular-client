@@ -70,6 +70,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatListModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
