@@ -5,12 +5,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+/**
+ * Component that displays a user registration form.
+ */
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
+  /**
+   * Creates an instance of UserRegistrationFormComponent.
+   */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
@@ -19,8 +25,16 @@ export class UserRegistrationFormComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {}
 
+  /**
+   * Angular lifecycle hook that is called after component initialization.
+   */
   ngOnInit(): void {}
 
+  /**
+   * Sends the user's registration information to the API.
+   * @returns - The user's information.
+   * @returns - The user's token.
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {

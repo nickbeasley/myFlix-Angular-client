@@ -5,12 +5,18 @@ import { MatSnackBar } from '@angular/material/snack-bar'; // Notifications
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { Router } from '@angular/router'; // Routing
 
+/**
+ * Component that displays a user login form.
+ */
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
+  /**
+   * Creates an instance of UserLoginFormComponent.
+   */
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -20,8 +26,16 @@ export class UserLoginFormComponent implements OnInit {
     public router: Router
   ) {}
 
+  /**
+   * Angular lifecycle hook that is called after component initialization.
+   */
   ngOnInit(): void {}
 
+  /**
+   * Sends the user's login information to the API.
+   * @returns - The user's information.
+   * @returns - The user's token.
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {

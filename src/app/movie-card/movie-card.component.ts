@@ -8,12 +8,25 @@ import { DescriptionComponent } from '../description/description.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Component that displays a movie card.
+ */
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent {
+  /**
+   * Creates an instance of MovieCardComponent.
+   * @param fetchApiData - The service that handles the API calls.
+   * @param dialog - The service that handles the dialog box.
+   * @param snackBar - The service that handles the snackbar.
+   * @param movies - The array of movies.
+   * @param favorites - The array of favorite movies.
+   * @param user - The user's information.
+   * @param favoriteMovies - The user's favorite movies.
+   */
   movies: any[] = [];
   favorites: any[] = [];
   constructor(
@@ -21,13 +34,20 @@ export class MovieCardComponent {
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ) {}
-
+  /**
+   * Angular lifecycle hook that is called after component initialization.
+   * @returns - The array of movies.
+   * @returns - The array of favorite movies.
+   */
   ngOnInit(): void {
     this.getMovies();
     this.getFavorites();
   }
 
-  //gets all movies
+  /**
+   * Gets the array of movies.
+   * @returns - The array of movies.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -36,7 +56,11 @@ export class MovieCardComponent {
     });
   }
 
-  //opens genre window
+  /**
+   *  Adds a movie to the user's list of favorite movies.
+   * @param id - The ID of the movie to add.
+   * @returns - The array of favorite movies.
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -47,7 +71,12 @@ export class MovieCardComponent {
     });
   }
 
-  //opens director window
+  /**
+   * Opens a dialog box that displays the director's information.
+   * @param name - The name of the director.
+   * @param bio - The director's biography.
+   * @returns - The director's name and biography.
+   */
   openDirector(name: string, bio: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -58,7 +87,12 @@ export class MovieCardComponent {
     });
   }
 
-  //opens movie summary window
+  /**
+   * Opens a dialog box that displays the movie's description.
+   * @param title - The title of the movie.
+   * @param description - The movie's description.
+   * @returns - The movie's title and description.
+   */
   openDescription(title: string, description: string): void {
     this.dialog.open(DescriptionComponent, {
       data: {
@@ -69,7 +103,10 @@ export class MovieCardComponent {
     });
   }
 
-  //gets favorite movies for user
+  /**
+   * Gets the array of favorite movies.
+   * @returns - The array of favorite movies.
+   */
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
@@ -78,12 +115,19 @@ export class MovieCardComponent {
     });
   }
 
-  //checks if movie is in favorites
+  /**
+   *  Checks if a movie is in the user's list of favorite movies.
+   * @param id - The ID of the movie to check.
+   * @returns - True if the movie is in the user's list of favorite movies, false if not.
+   */
   isFav(id: string): boolean {
     return this.favorites.includes(id);
   }
 
-  //adds movie to favorites
+  /**
+   * Adds a movie to the user's list of favorite movies.
+   * @param id - The ID of the movie to add.
+   */
   addFavorite(id: string): void {
     console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
@@ -94,7 +138,9 @@ export class MovieCardComponent {
       this.ngOnInit();
     });
   }
-
+  /**
+   * @param id - The ID of the movie to remove.
+   */
   deleteFavorite(id: string): void {
     console.log(id);
     this.fetchApiData.removeFavoriteMovie(id).subscribe((result) => {
